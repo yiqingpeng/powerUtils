@@ -8,6 +8,9 @@ class PowerUtils
      * 获取客户端IP
      * @return string IP地址
      */
+
+
+	 ////test
     public static function get_client_ip(){
         $ip = NULL;
         if(isset($_SERVER['HTTP_X_FORWARDED_FOR'])){            
