@@ -3,14 +3,20 @@ namespace vender\Utils;
 
 class PowerUtils
 {
+	
+	/**
+	 * 隐藏手机号中间N位
+	 */
+	public static function mask_mobile($mobile, $count=4){
+		$start = ceil((11-$count)/2);
+		$end = 11 - $start - $count;
+		return preg_replace( sprintf('/^(\d{%d})\d{$d}(\d{%d})$/', $start, $count, $end), '\\1****\\2', $mobile);
+	}
     
     /**
      * 获取客户端IP
      * @return string IP地址
      */
-
-
-	 ////test
     public static function get_client_ip(){
         $ip = NULL;
         if(isset($_SERVER['HTTP_X_FORWARDED_FOR'])){            
@@ -54,6 +60,7 @@ class PowerUtils
         $uri = $_SERVER['REQUEST_URI']?$_SERVER['REQUEST_URI']:($_SERVER['PHP_SELF']?$_SERVER['PHP_SELF']:$_SERVER['SCRIPT_NAME']);
         return 'http://'.$_SERVER['HTTP_HOST'].substr($uri, 0, strrpos($uri, '/')+1);
     }
+	
     
     /**
      * 字符串截取,支持中文和其它编码
